@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "9000:9000" 
+    depends_on:
+      - mongo
+      
+    environment:
+      MONGODB_URI: mongodb://mongo:27017/mydatabase  # Connection URI for MongoDB
+
+  caddy:
+    image: caddy:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    depends_on:
+      - app
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"  # Expose port 27017 for MongoDB
+
+networks:
+  default:
+    driver: bridge
