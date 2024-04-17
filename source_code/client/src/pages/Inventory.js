@@ -15,7 +15,9 @@ function Inventory() {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("http://localhost:9000/getProducts");
+      const response = await axios.get(
+        "http://ec2-18-222-144-60.us-east-2.compute.amazonaws.com:9000/getProducts"
+      );
       setProducts(response.data);
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -34,7 +36,7 @@ function Inventory() {
       formData.append("quantity", quantity);
 
       const response = await axios.post(
-        "http://localhost:9000/addProduct",
+        "http://ec2-18-222-144-60.us-east-2.compute.amazonaws.com:9000/addProduct",
         formData,
         {
           headers: {
@@ -55,7 +57,9 @@ function Inventory() {
 
   const deleteProduct = async (productId, imageUrl) => {
     try {
-      await axios.delete(`http://localhost:9000/deleteProduct/${productId}`);
+      await axios.delete(
+        `http://ec2-18-222-144-60.us-east-2.compute.amazonaws.com:9000/deleteProduct/${productId}`
+      );
       alert(`Product deleted successfully.`);
       fetchProducts(); // Fetch updated list of products
     } catch (error) {
@@ -81,7 +85,7 @@ function Inventory() {
         quantity,
       };
       await axios.put(
-        `http://localhost:9000/updateProduct/${editingProduct._id}`,
+        `http://ec2-18-222-144-60.us-east-2.compute.amazonaws.com:9000/updateProduct/${editingProduct._id}`,
         updatedProduct
       );
       setEditingProduct(null);
@@ -146,7 +150,7 @@ function Inventory() {
                   <div key={product._id} className="col-md-4 mb-4">
                     <div className="card">
                       <img
-                        src={`http://localhost:9000/pictures/${product.imageUrl}`}
+                        src={`http://ec2-18-222-144-60.us-east-2.compute.amazonaws.com:9000/pictures/${product.imageUrl}`}
                         className="card-img-top"
                         alt={product.name}
                       />

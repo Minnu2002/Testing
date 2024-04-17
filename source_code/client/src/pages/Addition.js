@@ -20,7 +20,9 @@ function Addition() {
   };
 
   const handleBackAddition = () => {
-    fetch(`http://localhost:9000/add?num1=${num1}&num2=${num2}`)
+    fetch(
+      `http://ec2-18-222-144-60.us-east-2.compute.amazonaws.com:9000/add?num1=${num1}&num2=${num2}`
+    )
       .then((response) => response.json())
       .then((data) => {
         setBackendSum(data.sum);

@@ -16,11 +16,14 @@ const LoggedUser = () => {
           throw new Error("No token found");
         }
 
-        const response = await axios.get("http://localhost:9000/user-details", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(
+          "http://ec2-18-222-144-60.us-east-2.compute.amazonaws.com:9000/user-details",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         setUserDetails(response.data);
         setLoading(false);

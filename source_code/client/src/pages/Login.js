@@ -19,10 +19,13 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:9000/login", {
-        username,
-        password,
-      });
+      const response = await axios.post(
+        "http://ec2-18-222-144-60.us-east-2.compute.amazonaws.com:9000/login",
+        {
+          username,
+          password,
+        }
+      );
       const token = response.data.token;
 
       localStorage.setItem("token", token);
